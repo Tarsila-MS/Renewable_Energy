@@ -360,3 +360,4 @@ deploy/
 _misc/
 dados/
 src/
+package-lock.json
