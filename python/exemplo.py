@@ -48,7 +48,7 @@ def extrair_inteiro(texto):
 		return 0
 
 driver = webdriver.Chrome()
-driver.get('https://ourworldindata.org/energy-mix#energy-mix-what-sources-do-we-get-our-energy-from')
+driver.get('https://ourworldindata.org/renewable-energy')
 
 botao_cookie = WebDriverWait(driver, 20).until(
 	EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-track-note="cookie-notice"]'))
@@ -89,3 +89,4 @@ for linha in linhas:
 print(dados)
 
 driver.close()
+#x path tabela -> /html/body/main/article/div[3]/div[2]/div/div/section[2]/div[2]/div[1]/figure/div/div[2]/div[2]/nav/ul/li[3]/a
