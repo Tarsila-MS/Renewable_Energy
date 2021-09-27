@@ -63,7 +63,7 @@ botoes_tabela = WebDriverWait(driver, 20).until(
 	EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[data-track-note="chart-click-table"]'))
 )
 
-botoes_tabela[1].click()
+botoes_tabela[0].click()
 
 corpo_tabela = WebDriverWait(driver, 20).until(
 	EC.presence_of_element_located((By.CSS_SELECTOR, 'table.data-table > tbody'))
