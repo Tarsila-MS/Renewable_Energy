@@ -5,6 +5,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from banco.py import insertAno
+from banco.py import insertPais
+from banco.py import insertDado
 
 def extrair_inteiro(texto):
 	try:
@@ -46,7 +49,7 @@ corpo_tabela = WebDriverWait(driver, 20).until(
 
 linhas = corpo_tabela.find_elements_by_tag_name('tr')
 
-dados = []
+
 
 for linha in linhas:
 	colunas = linha.find_elements_by_tag_name('td')
@@ -54,14 +57,12 @@ for linha in linhas:
 	nome = colunas[0].text
 	valor1900 = colunas[1].text
 	valor2019 = colunas[2].text
+	dado = [nome, valor1900, linha['ano']]
+	insertAno(linhas['ano'])
+	insertPais(nome)
+	insertDado(dado)
 
-	dados.append({
-		'nome': nome,
-		'valor1900': extrair_inteiro(valor1900),
-		'valor2019': extrair_inteiro(valor2019)
-	})
 
-print(dados)
 
 driver.close()
 #x path tabela -> /html/body/main/article/div[3]/div[2]/div/div/section[2]/div[2]/div[1]/figure/div/div[2]/div[2]/nav/ul/li[3]/a
