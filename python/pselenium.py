@@ -41,3 +41,23 @@ for linha in linhas:
 	print(nome, valor1900, valor2019)
 
     
+# linhas = corpo_tabela.find_elements_by_tag_name('tr')
+
+# dados = []
+
+# for linha in linhas:
+# 	colunas = linha.find_elements_by_tag_name('td')
+
+# 	nome = colunas[0].text
+# 	valor1900 = colunas[1].text
+# 	valor2019 = colunas[2].text
+
+# 	dados.append({
+# 		'nome': nome,
+# 		'valor1900': extrair_inteiro(valor1900),
+# 		'valor2019': extrair_inteiro(valor2019)
+# 	})
+
+# print(dados)
+
+# driver.close()
