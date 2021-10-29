@@ -1,0 +1,100 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #14771d;
+    background-color: #FFFDFB;
+    
+}
+
+.header {
+    overflow: hidden;
+    background-color: #5d9624d2;
+    padding: 40px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+a{
+    color: #FFFFFF;
+    padding-left: 10%;
+    font-size: 20px;
+
+}
+
+.header a.logo {
+    font-size: 25px;
+   
+}
+
+.header a:hover {
+    color:#FFFFFF;
+
+}
+
+.header a.borda{
+    padding-left:35%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #5D9624;
+}
+
+p{
+    padding-top: 7px;
+}
+hr {
+    border-top: 1px solid rgba(0,0,0,.2);
+    margin: 70px 7.5%;
+}
+
+
+.limitador {
+    max-width: 1100px;
+    margin: 0px auto;
+}
+
+.linha {
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.coluna {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.sobre{
+    border: 2px;
+    border-radius: 80px;
+   
+}
+
+.container {
+    position: relative;
+    
+  }
+  
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1;
+    right: 0.5;
+    height: 100%;
+    width: 60%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color:#5d9624ec;
+    color:#FFFFFF
+  }
+  
+  .container:hover .overlay {
+    opacity: 1;
+  }
