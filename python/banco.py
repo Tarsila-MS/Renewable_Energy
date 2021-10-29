@@ -1,13 +1,25 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
-mysql+mysqlconnector://<root>:<root>@<localhost>[:<3306>]/<energia>
-engine = create_engine('mysql+mysqlconnector://root:root@localhost/energia')
-def insertAno(insert):
+
+engine = create_engine('mysql+mysqlconnector://root:root@localhost/renewableenergy')
+
+def insertPaises(nomes):
+    paises = {}
+    with Session(engine) as sessao, sessao.begin():
+        parametros = {
+            'nome_pais': ''
+        }
+        for nome in nomes:
+            parametros['nome_pais'] = nome
+            sessao.execute(text("INSERT INTO pais (nome_pais) VALUES(:nome_pais)"), [parametros])
+            paises[nome] = sessao.execute("SELECT last_insert_id() id").first().id
+    return paises
+
+def insertProducao(paises, dados):
+    parametros = {
+        'id_pais': paises[dados[0]],
+        'ano': dados[1],
+        'producao': dados[2]
+    }
     with Session(engine) as sessao: 
-        ano = sessao.execute(text("INSERT INTO ano id_ano VALUES(?)"[insert]))
-def insertPais(insert):
-    with Session(engine) as sessao: 
-        pais = sessao.execute(text("INSERT INTO pais id_pais VALUES(?)"[insert]))
-def insertDado(insert):
-    with Session(engine) as sessao: 
-        dado = sessao.execute(text("INSERT INTO rel_pais_ano id_pais, id_ano, rel_dado VALUES(?)"[insert[0], insert[2], insert[1]]))
+        dado = sessao.execute(text("INSERT INTO pais_producao (id_pais, ano, producao) VALUES(:id_pais, :ano, :producao)"), [parametros])
