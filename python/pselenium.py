@@ -50,6 +50,7 @@ linhas = cabecalho_tabela.find_elements_by_tag_name('tr')
 colunas = linhas[1].find_elements_by_tag_name('th')
 
 coluna_ano = colunas[0]
+ano = int(coluna_ano.text)
 
 corpo_tabela = WebDriverWait(driver, 20).until(
 	EC.presence_of_element_located((By.CSS_SELECTOR, 'table.data-table > tbody'))
@@ -65,12 +66,12 @@ for linha in linhas:
 
 paises = insertPaises(nomes)
 
-while coluna_ano < 2020:
+while ano < 2020:
 	for linha in linhas:
 		colunas = linha.find_elements_by_tag_name('td')
 
 		
-		dado = [colunas[0].text, colunas[1].text, coluna_ano]
+		dado = [colunas[0].text, colunas[1].text, ano]
 		insertProducao(paises,dado)
 	
 
