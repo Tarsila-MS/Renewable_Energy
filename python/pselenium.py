@@ -6,20 +6,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from banco import insertPaises, insertProducao
+def validar(texto):
+	if texto[-1] == "%":
+		texto = texto[:-1]
+	return texto
 
 def extrair_inteiro(texto):
 	try:
-		i = texto.rindex(' ')
-		sem_unidade = texto[:i]
-
 		# Às vezes, esse valor pode iniciar pelo ano...
-		i = sem_unidade.find(' ')
+		i = texto.find(' ')
 		if i >= 0:
-			sem_unidade = sem_unidade[(i + 1):]
+			texto = texto[(i + 1):]
 
-		sem_virgula = sem_unidade.replace(',', '')
+		sem_virgula = texto.replace(',', '')
 
-		return int(sem_virgula)
+		return float(sem_virgula)
 	except:
 		return 0
 
@@ -66,12 +67,11 @@ for linha in linhas:
 
 paises = insertPaises(nomes)
 
-while ano < 2020:
-	for linha in linhas:
+for linha in linhas:
 		colunas = linha.find_elements_by_tag_name('td')
-
+		colunas[1] = extrair_inteiro(validar(colunas[1].text))
 		
-		dado = [colunas[0].text, colunas[1].text, ano]
+		dado = [colunas[0].text, colunas[1], ano]
 		insertProducao(paises,dado)
 	
 
