@@ -16,10 +16,10 @@ def insertPaises(nomes):
     return paises
 
 def insertProducao(paises, dados):
-    parametros = {
-        'id_pais': paises[dados[0]],
-        'ano': dados[1],
-        'producao': dados[2]
-    }
-    with Session(engine) as sessao: 
-        dado = sessao.execute(text("INSERT INTO pais_producao (id_pais, ano, producao) VALUES(:id_pais, :ano, :producao)"), [parametros])
+     with Session(engine) as sessao, sessao.begin():
+        parametros = {
+            'id_pais': paises[dados[0]],
+            'ano': dados[2],
+            'producao': dados[1]
+        }
+        sessao.execute(text("INSERT INTO pais_producao (id_pais, ano, producao) VALUES(:id_pais, :ano, :producao)"), [parametros])
