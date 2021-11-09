@@ -16,9 +16,12 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="/public/style.css" />
+	<link rel="stylesheet" type="text/css" href="/public/css/style.css" />
 
-	<title><%=((typeof titulo === "undefined" || !titulo) ? "Projeto" : (titulo + " - Projeto")) %></title>
+	<!--Animate.css	https://daneden.github.io/animate.css/	-->
+	<link rel="stylesheet" type="text/css" href="/public/css/animate.css" />
+
+	<title><%=((typeof titulo === "undefined" || !titulo) ? "Renewable Energy" : (titulo + " - Renewable Energy")) %></title>
 </head>
 <body>
 <div id="topo"></div>
@@ -26,11 +29,11 @@
 	<div class="header">
 		<a href="#topo" class="logo">Renewable Energy</a>
 		<div class="row">
-			
-				<a class="borda" href="#sobre">Sobre</a>
-				<a  href="#grafico">Gráfico</a>
-				<a  href="#quem">Quem somos</a>
-				<a href="https://ourworldindata.org/renewable-energy">Dados</a>	
+			<a class="borda" href="#energia">Energias</a>
+			<a href="#sobre">Sobre</a>
+			<a href="#grafico">Gráfico</a>
+			<a href="#quem">Quem somos</a>
+			<a href="https://ourworldindata.org/renewable-energy">Dados</a>	
 			
 		</div>					
 	</div>
@@ -43,16 +46,21 @@
 		<a href="#topo" class="logo">Renewable Energy</a>
 	</div>
 
+	<script type="text/javascript" src="/public/js/wow.min.js"></script>
 	<script type="text/javascript">
-	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-		anchor.addEventListener('click', function (e) {
-			e.preventDefault();
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
 
-			document.querySelector(this.getAttribute('href')).scrollIntoView({
-				behavior: 'smooth'
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
 			});
 		});
-	});
+
+		new WOW().init();
 	</script>
+	
 </body>
 </html>
+

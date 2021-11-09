@@ -32,7 +32,7 @@ a{
 }
 
 .header a.borda{
-    padding-left:35%;
+    padding-left:30%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -50,10 +50,10 @@ p{
 }
 
 .exp{
-    background-color: #5d962496;
+    background-color: #5d962457;
 }
 
-p.exp{
+.texto{
     color: #FFFFFF;
     font-size: 20px;
     padding: 5%;
@@ -71,14 +71,19 @@ p.exp{
 }
 
 .ajuste2{
-    color: #ffffff;
+    color: #5D9624;
     font-size: 20px;
     padding-left: 0%;
 }
 
-hr {
-    border-top: 1px solid rgba(0,0,0,.2);
-    margin: 70px 7.5%;
+.ajuste3{
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 70px;
+    text-align: center;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+    color: #ffffff;
 }
 
 .link{
@@ -117,7 +122,7 @@ hr {
   }
   
 
-  .overlay {
+.overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -127,8 +132,21 @@ hr {
     transition: .5s ease;
     background-color:#5d9624ec;
     color:#FFFFFF
-  }
+}
   
-  .container:hover .overlay {
+.container:hover .overlay {
     opacity: 1;
-  }
+}
+
+.secao {
+    overflow: hidden;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+.renewable{
+    background-image: url("/public/img/energy.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
