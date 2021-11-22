@@ -50,7 +50,7 @@ p{
 }
 
 .exp{
-    background-color: #5d962457;
+    background-color: #ff8d0047;
 }
 
 .texto{
@@ -84,15 +84,16 @@ p{
     padding-top: 25vh;
     padding-bottom: 25vh;
     color: #ffffff;
+    text-shadow: 2px 2px 8px black;
 }
 
 .link{
     padding-left: 15%;
-    color: #5D9624;
+    color: #e3a252de;
 }
 
 .git{
-    color: #5D9624;
+    color: #e3a252de;
 }
 
 .limitador {
@@ -116,6 +117,9 @@ p{
    
 }
 
+.sobre-tx{
+    color: #e3a252de;
+}
 .container {
     position: relative;
     
@@ -131,7 +135,8 @@ p{
     opacity: 0;
     transition: .5s ease;
     background-color:#5d9624ec;
-    color:#FFFFFF
+    color:#FFFFFF;
+    padding: 4px 8px;
 }
   
 .container:hover .overlay {
@@ -145,7 +150,8 @@ p{
 }
 
 .renewable{
-    background-image: url("/public/img/energy.jpg");
+    /* https://pixabay.com/pt/photos/nascer-do-sol-parque-e%c3%b3lico-3579931/ */
+    background-image: url("/public/img/sunrise-g0ae4975a8_1920.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
