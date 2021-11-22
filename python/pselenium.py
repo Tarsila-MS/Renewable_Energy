@@ -1,6 +1,7 @@
 import sys
 import time
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -52,6 +53,7 @@ colunas = linhas[1].find_elements_by_tag_name('th')
 
 coluna_ano = colunas[0]
 ano = int(coluna_ano.text)
+anos_totais = 2019 - ano
 
 corpo_tabela = WebDriverWait(driver, 20).until(
 	EC.presence_of_element_located((By.CSS_SELECTOR, 'table.data-table > tbody'))
@@ -67,16 +69,33 @@ for linha in linhas:
 
 paises = insertPaises(nomes)
 
-for linha in linhas:
+barra = driver.find_element_by_xpath("/html/body/main/article/div[3]/div[2]/div/div/section[2]/div[2]/div[1]/figure/div/div[2]/div[1]/div/div[3]/div[2]")
+horizontal_bar_width = barra.rect['width']
+
+thumb = driver.find_element_by_xpath("/html/body/main/article/div[3]/div[2]/div/div/section[2]/div[2]/div[1]/figure/div/div[2]/div[1]/div/div[3]/div[1]")
+
+action = ActionChains(driver)
+action.click_and_hold(thumb)
+action.perform()
+
+while ano <= 2018:
+	for linha in linhas:
 		colunas = linha.find_elements_by_tag_name('td')
 		colunas[1] = extrair_inteiro(validar(colunas[1].text))
-		
+
 		dado = [colunas[0].text, colunas[1], ano]
 		insertProducao(paises,dado)
-	
 
-	# arrastar e ir para o próximo ano
+	print(ano)
+	#time.sleep(0.2)
+	action = ActionChains(driver)
+	action.move_by_offset((horizontal_bar_width / anos_totais) , 0)
+	action.perform()
 
+	ano = ano + 1
+
+action = ActionChains(driver)
+action.release()
+action.perform()
 
 driver.close()
-
