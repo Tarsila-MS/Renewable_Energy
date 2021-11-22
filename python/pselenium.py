@@ -86,8 +86,7 @@ while ano <= 2018:
 		dado = [colunas[0].text, colunas[1], ano]
 		insertProducao(paises,dado)
 
-	print(ano)
-	#time.sleep(0.2)
+	
 	action = ActionChains(driver)
 	action.move_by_offset((horizontal_bar_width / anos_totais) , 0)
 	action.perform()
