@@ -76,6 +76,7 @@ p{
     padding-left: 0%;
 }
 
+
 .ajuste3{
     font-family: Montserrat, sans-serif;
     font-weight: 600;
@@ -87,13 +88,23 @@ p{
     text-shadow: 2px 2px 8px black;
 }
 
+.ajuste4{
+    padding-left: 3%;
+    padding-top: 0%;
+    
+}
+
+.ajuste5{
+    padding-left: 15%;
+    padding-top: 0%;
+}
 .link{
     padding-left: 15%;
-    color: #e3a252de;
+    color: #e99630;
 }
 
 .git{
-    color: #e3a252de;
+    color: #e99630;
 }
 
 .limitador {
@@ -118,7 +129,7 @@ p{
 }
 
 .sobre-tx{
-    color: #e3a252de;
+    color: #e99630;
 }
 .container {
     position: relative;
