@@ -84,7 +84,15 @@
 
 		<h2 class= "text-left">Gráfico</h2>
 
-		<div id="divgrafico" style="height: 250px;"></div>
+		<div>
+			<select id="pais" class="form-control">
+				<% for (let i = 0; i < paises.length; i++) { %>
+				<option value="<%= paises[i].id_pais %>" <%= (paises[i].id_pais == 83 ? 'selected="selected"' : '') %>><%= paises[i].nome_pais %></option>
+				<% } %>
+			</select>
+		</div>
+
+		<div id="paigrafico"></div>
 
 	</div>
 </div>
@@ -133,24 +141,39 @@
 <%- contentFor("scripts") %>
 <script type="text/javascript">
 
-	new Morris.Line({
-		// ID of the element in which to draw the chart.
-		element: 'divgrafico',
-		// Chart data records -- each entry in this array corresponds to a point on
-		// the chart.
-		data: [
-		{ year: '2008', value: 20 },
-		{ year: '2009', value: 10 },
-		{ year: '2010', value: 5 },
-		{ year: '2011', value: 5 },
-		{ year: '2012', value: 20 }
-		],
-		// The name of the data record attribute that contains x-values.
-		xkey: 'year',
-		// A list of names of data record attributes that contain y-values.
-		ykeys: ['value'],
-		// Labels for the ykeys -- will be displayed when you hover over the
-		// chart.
-		labels: ['Value']
-	});
+function desenharGrafico() {
+	if ($.active)
+		return;
+
+	$.ajax({
+		url: "/filtrar?id_pais=" + pais.value,
+		success: function (dados) {
+			$("#paigrafico").html('<div id="divgrafico" style="height: 350px;"></div>');
+
+			// http://morrisjs.github.io/morris.js/lines.html
+			new Morris.Line({
+				element: 'divgrafico',
+				data: dados,
+				parseTime: false,
+				hideHover: true,
+				xkey: 'ano',
+				ymin: 0,
+				ymax: 100,
+				resize: true,
+				ykeys: ['producao'],
+				labels: ['Ano']
+			});
+		},
+		error: function () {
+			alert("Erro ao atualizar os dados");
+		}
+	})
+
+}
+
+let pais = document.getElementById("pais");
+pais.onchange = desenharGrafico;
+
+desenharGrafico();
+
 </script>
