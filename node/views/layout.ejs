@@ -23,6 +23,11 @@
 
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
 	<title><%=((typeof titulo === "undefined" || !titulo) ? "Renewable Energy" : (titulo + " - Renewable Energy")) %></title>
 </head>
 <body>
@@ -62,7 +67,8 @@
 
 		new WOW().init();
 	</script>
-	
+
+	<%- defineContent("scripts") %>
+
 </body>
 </html>
-
