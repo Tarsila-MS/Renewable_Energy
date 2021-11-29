@@ -2,47 +2,32 @@
 
 class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
-		let nomeDoUsuarioQueVeioDoBanco = "Rafael";
+		let paises: any[];
 
-		let opcoes = {
-			usuario: nomeDoUsuarioQueVeioDoBanco,
-			quantidadeDeRepeticoes: 5
-		};
+		await app.sql.connect(async (sql) => {
+			paises = await sql.query("SELECT id_pais, nome_pais FROM renewableenergy.pais");
+		});
 
-		res.render("index/index", opcoes);
+		res.render("index/index", {
+			paises: paises
+		});
 	}
 
-	public async teste(req: app.Request, res: app.Response) {
-		res.render("index/teste");
-	}
+	public async filtrar(req: app.Request, res: app.Response) {
+		const id_pais = parseInt(req.query["id_pais"] as string);
 
-	public async produtos(req: app.Request, res: app.Response) {
-		let produtoA = {
-			id: 1,
-			nome: "Produto A",
-			valor: 25
-		};
+		if (!id_pais) {
+			res.json([]);
+			return;
+		}
 
-		let produtoB = {
-			id: 2,
-			nome: "Produto B",
-			valor: 15
-		};
+		let dados: any[];
 
-		let produtoC = {
-			id: 3,
-			nome: "Produto C",
-			valor: 100
-		};
+		await app.sql.connect(async (sql) => {
+			dados = await sql.query("SELECT ano, producao FROM renewableenergy.pais_producao WHERE id_pais = ?", [id_pais]);
+		});
 
-		let produtosVindosDoBanco = [ produtoA, produtoB, produtoC ];
-
-		let opcoes = {
-			titulo: "Listagem de Produtos",
-			produtos: produtosVindosDoBanco
-		};
-
-		res.render("index/produtos", opcoes);
+		res.json(dados);
 	}
 }
 
